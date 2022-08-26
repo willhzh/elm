@@ -7,7 +7,7 @@
       if (clientWidth >= 640) {
         docEl.style.fontSize = '20px';
       } else {
-        docEl.style.fontSize = 20 * (clientWidth / 640) + 'px';
+        docEl.style.fontSize = 20 * (clientWidth / 750) + 'px';
       }
     };
 

@@ -7,8 +7,8 @@
  * 
  */
 
-
 export default {
   title: 'elm',
-  baseUrl: 'https://elm.cangdu.org/'
+  baseUrl: 'https://elm.cangdu.org',
+  imgBaseUrl: 'https://elm.cangdu.org/img',
 }

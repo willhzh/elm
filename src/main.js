@@ -5,6 +5,9 @@ import routes from './router/router.js'
 import store from './store'
 import VueRouter from 'vue-router'
 import '@/config/rem'
+import '@/plugins/vant'
+import '@/style/iconfont.css';
+import '@/style/common.scss';
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -12,7 +15,6 @@ const router = new VueRouter({
   mode: 'hash',
 })
 Vue.config.productionTip = false
-
 
 
 new Vue({

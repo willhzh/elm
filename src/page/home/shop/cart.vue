@@ -1,8 +1,5 @@
 <template>
-  <div>
-
-    <h1>food</h1>
-  </div>
+  <div>cart</div>
 </template>
 
 <script>
@@ -12,5 +9,4 @@ export default {
 </script>
 
 <style>
-
 </style>
