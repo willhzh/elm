@@ -55,19 +55,21 @@
     </div>
 
     <div class="home_store">
-      <div class="cat_store" v-for="(item, i) in stores" :key="i">
+      <router-link :to="{ path: '/shop', query: { geohash, id: item.id } }" class="cat_store"
+        v-for="(item, i) in stores" :key="i">
         <img class="cat_img" :src="imageBaseUrl + '/' + item.image_path">
         <h1 class="store_title">{{ item.name }}</h1>
         <p class="store_rate">{{ item.rating }}分</p>
         <p class="store_order">月售{{ item.recent_order_num }}</p>
-        <p class="store_time">{{ item.order_lead_time }}/{{ item.distance }}</p>
+        <p class="store_time">
+          {{ item.order_lead_time }}
+          {{ item.distance }}
+        </p>
         <p class="store_deliver">起送￥{{ item.float_minimum_order_amount }} 配送￥{{ item.float_delivery_fee }}</p>
         <p class="store_tips" v-if="item.activities.length > 0">{{ item.activities[0].description }}</p>
-      </div>
+      </router-link>
 
     </div>
-
-
     <footguide></footguide>
   </div>
 
@@ -76,8 +78,8 @@
 <script>
 import { getCity, getFoodCat, getGeo, getShop } from '@/service/getdata'
 import footguide from '@/components/footguide.vue'
-import shop from '@/page/home/shop/shop.vue'
 import { mapMutations } from 'vuex'
+
 
 export default {
   name: 'home',
@@ -94,10 +96,12 @@ export default {
       stores: [],
       imageBaseUrl: 'https://elm.cangdu.org/img',
       foodcat: [],
-
+      test: [],
     }
   },
+
   async beforeMount() {
+
     let request = await getCity('guess');
     this.geohash = request.data.latitude + ',' + request.data.longitude;
     this.SAVE_GEOHASH(this.geohash);
@@ -110,14 +114,12 @@ export default {
       this.address = res.data.address;
     }
 
-
     let shop = await getShop(request.data.latitude, request.data.longitude);
     this.stores = shop.data;
-
     let foodcat = await getFoodCat();
+
     this.foodcat = foodcat.data;
-
-
+    this.foodcat.pop();
   },
 
   mounted() {
@@ -127,7 +129,6 @@ export default {
 
   components: {
     footguide,
-    shop
   },
 
 
@@ -135,8 +136,6 @@ export default {
     ...mapMutations([
       'SAVE_ADDRESS', 'SAVE_GEOHASH'
     ]),
-
-
 
   }
 }
@@ -183,7 +182,6 @@ export default {
     .arrow {
       left: 0.6rem;
       bottom: 0.4rem;
-
     }
   }
 
@@ -284,14 +282,15 @@ export default {
   position: relative;
   margin: 0.6rem 0.6rem 0.6rem 0.6rem;
 
+
   .catalog {
     @include wh(4.8rem, 4.8rem);
     display: inline-block;
-    margin-left: 1.2rem;
+    margin: 0 1.2rem;
+
 
     .app_cat {
       @include wh(100%, 100%);
-
     }
 
   }
@@ -330,9 +329,11 @@ export default {
 .home_store {
   width: 100%;
   background-color: #F5F5F5;
-  padding: 0.6rem 0.6rem;
+  padding: 0.6rem 0.6rem 7rem 0.6rem;
+
 
   .cat_store {
+    display: block;
     position: relative;
     @include wh(100%, 12rem);
     padding: 0.8rem;
@@ -341,10 +342,10 @@ export default {
     border-radius: 1.2rem;
 
     .cat_img {
-      @include wh(10.5rem, 10.5rem);
+      @include wh(10rem, 10rem);
       border-radius: 10%;
       position: absolute;
-      left: 1.2rem;
+      left: 1rem;
     }
 
     .store_title {
@@ -352,7 +353,7 @@ export default {
       height: 2.4rem;
       font-weight: bolder;
       position: absolute;
-      left: 12.6rem;
+      left: 12rem;
       text-align: left;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -361,7 +362,7 @@ export default {
 
     .store_rate {
       position: absolute;
-      left: 12.6rem;
+      left: 12rem;
       top: 4rem;
       font-size: 1.4rem;
       font-weight: bold;
@@ -370,25 +371,25 @@ export default {
 
     .store_order {
       position: absolute;
-      left: 17rem;
+      left: 16.3rem;
       top: 4.2rem;
     }
 
     .store_time {
       position: absolute;
       right: 0.6rem;
-      top: 4rem;
+      top: 4.2rem;
     }
 
     .store_deliver {
       position: absolute;
-      left: 12.6rem;
+      left: 12rem;
       top: 6.8rem;
     }
 
     .store_tips {
       position: absolute;
-      left: 12.6rem;
+      left: 12rem;
       bottom: 0.6rem;
       color: #ae4c59;
       border: 0.2rem solid #e7e3e4;

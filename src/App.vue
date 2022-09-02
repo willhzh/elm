@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <router-view />
-
+    <keep-alive exclude="shop">
+      <router-view></router-view>
+    </keep-alive>
   </div>
 
 </template>
+
 
 
 

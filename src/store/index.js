@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import mutations from './mutation'
+import actions from './action'
 
 Vue.use(Vuex)
 
@@ -33,7 +35,7 @@ const state = {
   cartPrice: null, //会员卡价格
 }
 
-import mutations from './mutation'
+
 
 export default new Vuex.Store({
   state,

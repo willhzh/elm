@@ -1,9 +1,15 @@
 <template>
   <div>
-    <van-icon class="icon iconfont arrow" size="0.1rem">&#xee1c;</van-icon>
-    <van-icon name="chat-o" dot />
-    <van-icon name="chat-o" class="a123" size="100rem" />
-    <h1>order</h1>
+    <div class="head">
+      <van-tabs v-model="active">
+        <van-tab title="全部">内容 1</van-tab>
+        <van-tab title="待消费">内容 2</van-tab>
+        <van-tab title="待评价">内容 3</van-tab>
+        <van-tab title="退款">内容 4</van-tab>
+      </van-tabs>
+    </div>
+
+
     <footguide></footguide>
   </div>
 </template>
@@ -13,13 +19,17 @@ import footguide from '@/components/footguide.vue'
 export default {
   components: {
     footguide
-  }
+  },
+  data() {
+    return {
+      active: 0,
+    };
+  },
+  methods: {
+
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-.a123 {
-  background-color: blue;
-
-}
 </style>

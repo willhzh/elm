@@ -9,6 +9,8 @@ import '@/plugins/vant'
 import '@/style/iconfont.css';
 import '@/style/common.scss';
 
+
+
 Vue.use(VueRouter)
 const router = new VueRouter({
   routes,

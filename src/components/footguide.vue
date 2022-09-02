@@ -4,11 +4,11 @@
       <div class="icon iconfont elm">&#xfad8;</div>
     </section>
     <section @click="gotoAddress('/search')" class="guide_item">
-      <div class="icon iconfont sig">&#xe8d6;</div>
+      <div class="icon iconfont search">&#xe8d6;</div>
       <span>搜索</span>
     </section>
     <section @click="gotoAddress('/order')" class="guide_item">
-      <div class="icon iconfont sig">&#xe604;</div>
+      <div class="icon iconfont order">&#xe604;</div>
       <span>订单</span>
     </section>
     <section @click="gotoAddress('/user')" class="guide_item">
@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 
 export default {
   data() {
@@ -27,23 +26,13 @@ export default {
 
     }
   },
-  created() {
-
-  },
-  mounted() {
-
-  },
-  computed: {
-    ...mapState([
-      'geohash'
-    ]),
-  },
   methods: {
+
     gotoAddress(path) {
-      if (path == this.$store.state.path)
+      if (path == this.$route.path)
         return
       this.$router.push(path)
-      this.$store.state.path = path
+
     }
   },
 
@@ -88,6 +77,18 @@ export default {
   .sig {
     margin-top: 0.6rem;
     font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .order {
+    margin-top: 0.6rem;
+    font-size: 2.1rem;
+    font-weight: bold;
+  }
+
+  .search {
+    margin-top: 0.8rem;
+    font-size: 1.8rem;
     font-weight: bold;
   }
 }
